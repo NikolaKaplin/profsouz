@@ -1,37 +1,66 @@
-import Link from "next/link";
+"use client";
 
-export default function HomePage() {
+import { useEffect } from "react";
+
+export default function MainScreen() {
+  // Add animation class when component mounts
+  useEffect(() => {
+    const animateItems = document.querySelectorAll("._animateItems");
+    animateItems.forEach((item) => {
+      item.classList.add("_active");
+    });
+  }, []);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
-      <div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
-        <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
-          Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
-        </h1>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/usage/first-steps"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">First Steps →</h3>
-            <div className="text-lg">
-              Just the basics - Everything you need to know to set up your
-              database and authentication.
+    <section id="mainscreen">
+      <div className="container mx-auto px-4 py-12">
+        <div className="bubbles-container relative mb-16">
+          <div className="bubble bubble1 _animateItems mb-8">
+            <h1 className="text-primary text-4xl font-bold">
+              Профсоюз - это...
+            </h1>
+          </div>
+          <div className="bubble bubble2 _animateItems">
+            <h3 className="text-primary animate-bounce text-xl font-medium">
+              каждый из нас
+            </h3>
+          </div>
+          <div className="bubble bubble3 _animateItems">
+            <h3 className="text-primary text-xl font-medium">и все мы</h3>
+          </div>
+          <div className="bubble bubble4 _animateItems">
+            <h3 className="text-primary text-xl font-medium">вместе</h3>
+          </div>
+        </div>
+
+        <div className="mainscreen-lenta">
+          <h2 className="mb-8 text-center text-2xl font-semibold">
+            А также твои
+          </h2>
+          <div className="main-lenta-content grid gap-8 md:grid-cols-2">
+            <div className="lenta-col1 space-y-6">
+              <div className="block-arrow _animateItems relative rounded-lg bg-white p-6 shadow-lg">
+                <h4 className="text-lg font-medium">Коллективный договор</h4>
+              </div>
+              <div className="block-arrow _animateItems relative rounded-lg bg-white p-6 shadow-lg">
+                <h4 className="text-lg font-medium">Опора и защита</h4>
+              </div>
             </div>
-          </Link>
-          <Link
-            className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
-            href="https://create.t3.gg/en/introduction"
-            target="_blank"
-          >
-            <h3 className="text-2xl font-bold">Documentation →</h3>
-            <div className="text-lg">
-              Learn more about Create T3 App, the libraries it uses, and how to
-              deploy it.
+            <div className="lenta-col2 space-y-6">
+              <div className="block-arrow _animateItems relative rounded-lg bg-white p-6 shadow-lg">
+                <h4 className="text-lg font-medium">
+                  Комфортные условия труда
+                </h4>
+              </div>
+              <div className="block-arrow _animateItems relative rounded-lg bg-white p-6 shadow-lg">
+                <h4 className="text-lg font-medium">
+                  Уверенность в завтрашнем дне
+                </h4>
+              </div>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
-    </main>
+    </section>
   );
 }
