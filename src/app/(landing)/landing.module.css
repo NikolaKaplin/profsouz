@@ -1,0 +1,77 @@
+.bubble {
+    position: absolute;
+    background-color: #f2f8fd;
+    border: 2px solid #f2f8fd;
+    border-radius: 20px;
+    padding: 14px 20px;
+    animation-name: bubble;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-duration: var(--duration);
+}
+
+.container {
+    background-image: url("/bg-mainscreen-500.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    height: calc(70vh - 80px);
+}
+
+.fadeIn {
+    animation-name: fade-in;
+    animation-iteration-count: 1;
+    animation-duration: 300ms;
+}
+
+
+/* Block arrow styling
+.arrowBlock {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.arrowBlock:hover {
+    transform: translateY(-5px);
+}
+
+.arrowBlock::after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-left: 10px solid #fff;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    filter: drop-shadow(2px 0 2px rgba(0, 0, 0, 0.1));
+} */
+
+@media screen and (min-width: 720px) {
+    .container {
+        background-image: url("/bg-mainscreen.png");
+        background-position: center;
+        height: calc(100vh - 80px);
+    }
+}
+
+@keyframes bubble {
+    0% {
+        transform: translateY(0.1rem);
+    }
+    100% {
+        transform: translateY(-0.3rem);
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        transform: translateY(2rem);
+        opacity: 0%;
+    }
+    100% {
+        transform: translateY(0rem);
+        opacity: 100%;
+    }
+}

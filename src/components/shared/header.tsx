@@ -1,12 +1,14 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Settings, LogIn } from "lucide-react";
 import { Button } from "../ui/button";
-import { headItems } from "~/app/constants";
-import { HeadItems } from "~/app/types";
 
-export default function Navbar() {
-  const pages: HeadItems[] = headItems;
+export type HeadItem = {
+  path: string;
+  title: string;
+  icon?: JSX.Element;
+};
+
+export default function Navbar({items}: {items: HeadItem[]}) {
   return (
     <nav className="border-b bg-[#F2F8FD]">
       <div className="container flex h-16 items-center justify-around text-[14px] text-[#003f81]">
@@ -23,9 +25,9 @@ export default function Navbar() {
               Профсоюз КСТ
             </span>
           </Link>
-          {pages.map((item) => {
+          {items.map((item, i) => {
             return (
-              <div className="hidden items-center gap-6 md:flex">
+              <div className="hidden items-center gap-6 md:flex" key={i}>
                 <Link
                   href={item.path}
                   className="hover:text-primary text-sm font-medium"

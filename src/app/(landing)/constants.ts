@@ -1,6 +1,6 @@
-import { HeadItems } from "./types";
+import { HeadItem } from "~/components/shared/header";
 
-export const headItems: HeadItems[] = [
+export const headItems: HeadItem[] = [
   {
     title: "Главная",
     path: "/",
