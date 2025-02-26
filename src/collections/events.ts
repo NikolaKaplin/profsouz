@@ -25,9 +25,21 @@ export const Events: CollectionConfig = {
       required: true,
     },
     {
+      name: "location",
+      type: "text",
+      label: "Место проведения",
+      required: true,
+    },
+    {
       name: "endDate",
       type: "date",
       label: "Дата окончания регистрации",
+      required: true,
+    },
+    {
+      name: "price",
+      type: "text",
+      label: "Цена билета",
       required: true,
     },
     {
