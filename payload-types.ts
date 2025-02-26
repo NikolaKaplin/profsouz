@@ -163,7 +163,9 @@ export interface Event {
     };
     [k: string]: unknown;
   };
+  location: string;
   endDate: string;
+  price: string;
   tickets: number;
   updatedAt: string;
   createdAt: string;
@@ -279,7 +281,9 @@ export interface NewsSelect<T extends boolean = true> {
 export interface EventsSelect<T extends boolean = true> {
   title?: T;
   content?: T;
+  location?: T;
   endDate?: T;
+  price?: T;
   tickets?: T;
   updatedAt?: T;
   createdAt?: T;
