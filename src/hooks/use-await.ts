@@ -10,7 +10,7 @@ export function useAwait<F extends (...args: any) => Promise<any>>(
 
   useEffect(() => {
     fun().then(setData);
-  }, []);
+  }, [fun, args]);
 
   return data as Awaited<ReturnType<F>>;
 }

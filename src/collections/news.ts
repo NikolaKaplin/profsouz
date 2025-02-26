@@ -11,11 +11,13 @@ export const News: CollectionConfig = {
       name: "title",
       type: "text",
       label: "Заголовок",
+      required: true,
     },
     {
       name: "content",
       type: "richText",
       label: "Содержание",
+      required: true,
     },
   ],
   timestamps: true,

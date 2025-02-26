@@ -8,6 +8,8 @@ import { fileURLToPath } from "url";
 import { metadata } from "./src/app/metadata";
 import { News } from "~/collections/news";
 import { ru } from "@payloadcms/translations/languages/ru";
+import { Events } from "~/collections/events";
+import { Tickets } from "~/collections/tickets";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -34,7 +36,7 @@ export default buildConfig({
       },
     },
   },
-  collections: [News],
+  collections: [News, Events, Tickets],
 
   secret: env.AUTH_SECRET,
   editor: lexicalEditor(),
