@@ -4,6 +4,7 @@ import { postgresAdapter } from "@payloadcms/db-postgres";
 import { buildConfig, IconConfig } from "payload";
 import { env } from "~/env";
 import path from "path";
+import { s3Storage } from "@payloadcms/storage-s3";
 import { fileURLToPath } from "url";
 import { metadata } from "./src/app/metadata";
 import { News } from "~/collections/news";
@@ -38,6 +39,22 @@ export default buildConfig({
   },
   collections: [News, Events, Tickets],
 
+  plugins: [
+    s3Storage({
+      collections: {
+        news: true,
+      },
+      bucket: process.env.S3_BUCKET!,
+      config: {
+        credentials: {
+          accessKeyId: process.env.S3_ACCESS_KEY_ID!,
+          secretAccessKey: process.env.S3_SECRET_ACCESS_KEY!,
+        },
+        region: process.env.S3_REGION,
+        endpoint: "https://storage.yandexcloud.net",
+      },
+    }),
+  ],
   secret: env.AUTH_SECRET,
   editor: lexicalEditor(),
   localization: {
