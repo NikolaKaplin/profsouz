@@ -1,7 +1,8 @@
+import { LogIn } from "lucide-react";
 import Link from "next/link";
-import { Settings, LogIn, ArrowRight, ShoppingCart } from "lucide-react";
+import { JSX } from "react";
 import { Button } from "../ui/button";
-import landing from "../../app/(landing)/landing.module.css";
+import Logo from "./logo";
 export type HeadItem = {
   path: string;
   title: string;
@@ -14,13 +15,7 @@ export default function Navbar({ items }: { items: HeadItem[] }) {
       <div className="container flex h-16 items-center justify-around text-[14px] text-[#003f81]">
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2">
-            <img
-              src="logo.svg"
-              alt="Профсоюз КСТ Logo"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
+            <Logo width={40} height={40} />
             <span className="text-lg font-semibold text-[#003f81] text-primary">
               Профсоюз КСТ
             </span>
