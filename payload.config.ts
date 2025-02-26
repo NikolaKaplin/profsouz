@@ -1,33 +1,55 @@
-import sharp from 'sharp'
-import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { postgresAdapter } from '@payloadcms/db-postgres'
-import { buildConfig } from 'payload'
-import { env } from '~/env'
+import sharp from "sharp";
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { postgresAdapter } from "@payloadcms/db-postgres";
+import { buildConfig, IconConfig } from "payload";
+import { env } from "~/env";
+import path from "path";
+import { fileURLToPath } from "url";
+import { metadata } from "./src/app/metadata";
+import { News } from "~/collections/news";
+import { ru } from "@payloadcms/translations/languages/ru";
+
+const filename = fileURLToPath(import.meta.url);
+const dirname = path.dirname(filename);
 
 export default buildConfig({
-  // If you'd like to use Rich Text, pass your editor here
-  editor: lexicalEditor(),
+  admin: {
+    meta: {
+      titleSuffix: "— Профсоюз КСТ",
+      description: "Админ-панель веб-сайта Профсоюза КСТ",
+      keywords: "Профсоюз, КСТ, Колледж Современных Технологий",
+      icons: metadata.icons as IconConfig[],
+      openGraph: {},
+    },
+    importMap: {
+      baseDir: path.resolve(dirname, "src/components"),
+    },
+    components: {
+      graphics: {
+        Logo: {
+          path: "/shared/logo",
+          clientProps: { width: 200, height: 200 },
+        },
+        Icon: "/shared/logo",
+      },
+    },
+  },
+  collections: [News],
 
+  secret: env.AUTH_SECRET,
+  editor: lexicalEditor(),
   localization: {
     locales: ["ru"],
-    defaultLocale: "ru"
+    defaultLocale: "ru",
   },
-
-  // Define and configure your collections in this array
-  collections: [],
-
-  // Your Payload secret - should be a complex and secure string, unguessable
-  secret: env.AUTH_SECRET,
-  // Whichever Database Adapter you're using should go here
-  // Mongoose is shown as an example, but you can also use Postgres
   db: postgresAdapter({
     pool: {
-        connectionString: env.DATABASE_URL
-    }
+      connectionString: env.DATABASE_URL,
+    },
   }),
-  // If you want to resize images, crop, set focal point, etc.
-  // make sure to install it and pass it to the config.
-  // This is optional - if you don't need to do these things,
-  // you don't need it!
   sharp,
-})
+  i18n: {
+    fallbackLanguage: "ru",
+    supportedLanguages: { ru },
+  },
+});
