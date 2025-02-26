@@ -6,11 +6,11 @@ export function useAwait<F extends (...args: any) => Promise<any>>(
   fun: F,
   ...args: Parameters<F>
 ) {
-  const [data, setData] = useState<F>();
+  const [data, setData] = useState<Awaited<ReturnType<F>>>();
 
   useEffect(() => {
     fun().then(setData);
-  }, [fun, args]);
+  }, []);
 
-  return data as Awaited<ReturnType<F>>;
+  return data;
 }

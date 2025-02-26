@@ -24,4 +24,5 @@ export const News: CollectionConfig = {
   access: {
     read: () => true,
   },
+  upload: true,
 };
