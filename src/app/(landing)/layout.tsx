@@ -5,6 +5,7 @@ import { type Metadata } from "next";
 import Header from "~/components/shared/header";
 import { Providers } from "~/components/shared/providers";
 import { headItems } from "./constants";
+import { Footer } from "~/components/shared/footer";
 
 export { metadata } from "../metadata";
 
@@ -19,6 +20,7 @@ export default function RootLayout({
         <Providers>
           <Header items={headItems} />
           {children}
+          <Footer/>
         </Providers>
       </body>
     </html>
