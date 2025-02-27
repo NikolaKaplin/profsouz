@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-  font-family: 'Comfortaa', cursive;
+  font-family: "Comfortaa", cursive;
 }
 
 @layer base {
@@ -18,7 +18,7 @@
     --radius: 0.5rem;
   }
 }
-  
+
 .container {
   max-width: 1200px;
 }
@@ -32,13 +32,59 @@
   }
 }
 
-
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+.prose img {
+  @apply mx-auto my-8 max-w-full rounded-lg;
+}
+
+.prose h2 {
+  @apply mb-6 mt-12 text-3xl font-bold text-gray-800;
+}
+
+.prose h3 {
+  @apply mb-4 mt-8 text-2xl font-semibold text-gray-800;
+}
+
+.prose p {
+  @apply mb-6 leading-relaxed text-gray-700;
+}
+
+.prose a {
+  @apply text-blue-600 transition-colors duration-200 hover:text-blue-800;
+}
+
+.prose ul,
+.prose ol {
+  @apply my-6 ml-6;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose blockquote {
+  @apply my-8 border-l-4 border-gray-300 pl-4 italic text-gray-600;
+}
+
+/* Добавим стили для улучшения читаемости на мобильных устройствах */
+@media (max-width: 640px) {
+  .prose {
+    @apply text-base;
+  }
+
+  .prose h2 {
+    @apply text-2xl;
+  }
+
+  .prose h3 {
+    @apply text-xl;
   }
 }

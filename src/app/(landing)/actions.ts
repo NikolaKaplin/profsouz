@@ -11,3 +11,12 @@ export async function getLastNews() {
   });
   return news.docs;
 }
+
+export async function getNewsById(id: string) {
+  const payload = await getPayload();
+  const slug = await payload.findByID({
+    collection: "news",
+    id: id,
+  });
+  return slug;
+}
