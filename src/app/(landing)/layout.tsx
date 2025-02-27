@@ -6,6 +6,7 @@ import Header from "~/components/shared/header";
 import { Providers } from "~/components/shared/providers";
 import { headItems } from "./constants";
 import { Footer } from "~/components/shared/footer";
+import { Toaster } from "sonner";
 
 export { metadata } from "../metadata";
 
@@ -20,7 +21,8 @@ export default function RootLayout({
         <Providers>
           <Header items={headItems} />
           {children}
-          <Footer/>
+          <Toaster />
+          <Footer />
         </Providers>
       </body>
     </html>

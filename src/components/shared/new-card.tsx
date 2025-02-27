@@ -9,6 +9,7 @@ import { Calendar, ImageIcon, Video } from "lucide-react";
 import Link from "next/link";
 import { News } from "payload-types";
 import { format } from "date-fns";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 
 interface Props {
   props: News;
@@ -41,13 +42,11 @@ export const NewCard = ({ props }: Props) => {
         </div>
       </CardHeader>
       <CardContent>
-        <p className="line-clamp-3 text-blue-600">
-          {props.content.root.children[0].children[0].text}
-        </p>
+        <RichText className="line-clamp-5" data={props.content} />
       </CardContent>
       <CardFooter className="flex items-center justify-between">
         <Link
-          href={`/post/${props.id}`}
+          href={`/news/${props.id}`}
           className="text-[#003f81] transition-colors hover:text-blue-600"
         >
           Читать далее
