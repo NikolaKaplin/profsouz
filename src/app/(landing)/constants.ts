@@ -1,5 +1,5 @@
-import { HeadItem } from "~/components/shared/header";
-import { ProfsouzHistory } from "./types";
+import { type HeadItem } from "~/components/shared/header";
+import { type ProfsouzHistory } from "./types";
 
 export const headItems: HeadItem[] = [
   {

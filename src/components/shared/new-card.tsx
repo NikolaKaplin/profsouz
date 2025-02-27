@@ -5,9 +5,9 @@ import {
   CardHeader,
   CardTitle,
 } from "../ui/card";
-import { Calendar, ImageIcon, Video } from "lucide-react";
+import { Calendar, ImageIcon } from "lucide-react";
 import Link from "next/link";
-import { News } from "payload-types";
+import { type News } from "payload-types";
 import { format } from "date-fns";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 
@@ -22,6 +22,7 @@ export const NewCard = ({ props }: Props) => {
         {props.url ? (
           <img
             src={props.url || "/placeholder.svg"}
+            alt="Фото отсутствует"
             className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
           />
         ) : (

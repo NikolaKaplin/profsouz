@@ -1,10 +1,8 @@
 "use client";
 
-import Link from "next/link";
-import { Button } from "~/components/ui/button";
+import { NewCard } from "~/components/shared/new-card";
 import { useAwait } from "~/hooks/use-await";
 import { getLastNews } from "../actions";
-import { NewCard } from "~/components/shared/new-card";
 
 export default function Home() {
   const news = useAwait(getLastNews) ?? [];

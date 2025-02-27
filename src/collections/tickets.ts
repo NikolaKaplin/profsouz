@@ -1,3 +1,4 @@
+import { type CollectionConfig } from "payload";
 import { CollectionConfig } from "payload";
 
 export const Tickets: CollectionConfig = {
