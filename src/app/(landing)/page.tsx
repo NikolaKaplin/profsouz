@@ -1,9 +1,10 @@
 "use client";
 
+import { NewCard } from "~/components/shared/new-card";
 import { useAwait } from "~/hooks/use-await";
-import landing from "./landing.module.css";
 import { getLastNews } from "./actions";
-import { RichText } from "@payloadcms/richtext-lexical/react";
+import landing from "./landing.module.css";
+import React from "react";
 
 export default function MainScreen() {
   const news = useAwait(getLastNews) ?? [];
@@ -17,7 +18,7 @@ export default function MainScreen() {
           <div>
             <div
               className={`${landing.bubble} mb-8`}
-              style={{ "--duration": "1.1s" } as any}
+              style={{ "--duration": "1.1s" } as React.CSSProperties}
             >
               <h1 className="text-4xl font-semibold text-primary">
                 <b>Профсоюз</b> - это...
@@ -58,20 +59,7 @@ export default function MainScreen() {
         </h1>
         <div className="flex grid-cols-[repeat(auto-fill,_32%)] flex-col gap-4 md:grid md:[&_>div]:max-w-[470px]">
           {news.map((n) => (
-            <div
-              key={n.id}
-              className="overflow-hidden rounded-lg p-4 text-sm ring-2"
-            >
-              <h2 className="text-xl font-semibold">{n.title}</h2>
-              <span className="text-gray-500">
-                {new Date(n.createdAt).toLocaleDateString()}
-              </span>
-              {n.content ? (
-                <RichText data={n.content} />
-              ) : (
-                <p>Нет содержания</p>
-              )}
-            </div>
+            <NewCard key={n.id} props={n} />
           ))}
         </div>
       </section>
@@ -91,7 +79,7 @@ function AbsoluteBubble({
   return (
     <div
       className={`${landing.bubble} shadow-lg ${className}`}
-      style={{ "--duration": `${duration}ms` } as any}
+      style={{ "--duration": `${duration}ms` } as React.CSSProperties}
     >
       <h3 className="text-xl font-semibold text-primary">{children}</h3>
     </div>

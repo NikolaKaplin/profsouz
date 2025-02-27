@@ -1,6 +1,6 @@
 import { LogIn } from "lucide-react";
 import Link from "next/link";
-import { JSX } from "react";
+import { type JSX } from "react";
 import { Button } from "../ui/button";
 import Logo from "./logo";
 export type HeadItem = {
