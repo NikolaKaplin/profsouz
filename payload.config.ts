@@ -11,6 +11,7 @@ import { News } from "~/collections/news";
 import { ru } from "@payloadcms/translations/languages/ru";
 import { Events } from "~/collections/events";
 import { Tickets } from "~/collections/tickets";
+import { users } from "~/payload-generated-schema";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
