@@ -1,4 +1,5 @@
 import { type CollectionConfig } from "payload";
+import { text } from "stream/consumers";
 
 export const Events: CollectionConfig = {
   slug: "events",
@@ -22,6 +23,12 @@ export const Events: CollectionConfig = {
       name: "content",
       type: "richText",
       label: "Содержание",
+      required: true,
+    },
+    {
+      name: "receiving",
+      type: "text",
+      label: "Где получить",
       required: true,
     },
     {
@@ -53,4 +60,5 @@ export const Events: CollectionConfig = {
   access: {
     read: () => true,
   },
+  upload: true,
 };

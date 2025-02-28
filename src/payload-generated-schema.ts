@@ -13,6 +13,7 @@ import {
   serial,
   timestamp,
   varchar,
+  boolean,
   numeric,
   integer,
   jsonb,
@@ -52,6 +53,7 @@ export const users = pgTable(
       withTimezone: true,
       precision: 3,
     }),
+    isAdmin: boolean().default(false),
   },
   (columns) => ({
     users_updated_at_idx: index("users_updated_at_idx").on(columns.updatedAt),
