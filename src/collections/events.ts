@@ -1,5 +1,4 @@
 import { type CollectionConfig } from "payload";
-import { text } from "stream/consumers";
 
 export const Events: CollectionConfig = {
   slug: "events",

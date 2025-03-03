@@ -12,6 +12,7 @@ import { ru } from "@payloadcms/translations/languages/ru";
 import { Events } from "~/collections/events";
 import { Tickets } from "~/collections/tickets";
 import { users } from "~/payload-generated-schema";
+import { Users } from "~/collections/users";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -38,7 +39,7 @@ export default buildConfig({
       },
     },
   },
-  collections: [News, Events, Tickets],
+  collections: [Users, News, Events, Tickets],
 
   plugins: [
     s3Storage({
