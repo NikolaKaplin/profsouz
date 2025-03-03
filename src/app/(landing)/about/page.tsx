@@ -88,7 +88,7 @@ export default function AboutPage() {
         <Accordion
           type="single"
           collapsible
-          value={openHistoryItem}
+          value={openHistoryItem!}
           onValueChange={handleHistoryAccordionChange}
           className="rounded-lg bg-white shadow-md"
         >
@@ -115,7 +115,7 @@ export default function AboutPage() {
         <Accordion
           type="single"
           collapsible
-          value={openDocumentItem}
+          value={openDocumentItem!}
           onValueChange={handleDocumentAccordionChange}
           className="rounded-lg bg-white shadow-md"
         >
@@ -133,7 +133,7 @@ export default function AboutPage() {
                   {item.content.map((content, contentIndex) => (
                     <li key={contentIndex}>
                       <Link
-                        href={item.link[contentIndex]}
+                        href={item.link[contentIndex]!}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-600 hover:underline"

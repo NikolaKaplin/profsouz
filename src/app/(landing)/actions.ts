@@ -1,7 +1,5 @@
 "use server";
 
-import * as AWS from "@aws-sdk/client-s3";
-import { Event } from "payload-types";
 import { getPayload } from "~/server/payload";
 
 export async function getLastNews() {
@@ -66,7 +64,6 @@ export async function getTicketsInEvent(userId: number, eventId: number) {
     const event = ticket.event;
     return typeof event !== "number" && event.id === eventId;
   });
-  console.log(result?.amount);
   if (result?.amount == undefined) return 0;
   return result?.amount;
 }
