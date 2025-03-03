@@ -24,7 +24,6 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 import { format } from "date-fns";
 import { getTicketsInEvent, ticketing } from "~/app/(landing)/actions";
 import { Event } from "payload-types";
-import { useAwait } from "~/hooks/use-await";
 
 interface Props {
   props: Event;
@@ -53,6 +52,7 @@ export const EventCard = ({ props }: Props) => {
         setAvailableTickets(props.tickets - result.amount);
         setIsSelectingTickets(false);
         setTicketCount(1);
+        setMyTickets(result.amount);
       } else {
         // Handle error case
       }

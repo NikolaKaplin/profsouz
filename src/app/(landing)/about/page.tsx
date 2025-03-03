@@ -14,13 +14,25 @@ import {
   CardTitle,
 } from "../../../components/ui/card";
 import { PhoneIcon, MailIcon, MapPinIcon } from "lucide-react";
-import { profsouzHistory } from "../constants";
+import { documentsInfo, profsouzHistory } from "../constants";
+import Link from "next/link";
+
+export type DocumentsInfo = {
+  name: string;
+  content: string[];
+  link: string[];
+};
 
 export default function AboutPage() {
-  const [openItem, setOpenItem] = useState<string | null>(null);
+  const [openHistoryItem, setOpenHistoryItem] = useState<string | null>(null);
+  const [openDocumentItem, setOpenDocumentItem] = useState<string | null>(null);
 
-  const handleAccordionChange = (value: string) => {
-    setOpenItem(value === openItem ? null : value);
+  const handleHistoryAccordionChange = (value: string) => {
+    setOpenHistoryItem(value === openHistoryItem ? null : value);
+  };
+
+  const handleDocumentAccordionChange = (value: string) => {
+    setOpenDocumentItem(value === openDocumentItem ? null : value);
   };
 
   return (
@@ -71,18 +83,18 @@ export default function AboutPage() {
       </div>
 
       {/* History Section */}
-      <div className="mx-auto mb-12 max-w-4xl px-4">
+      <div id="documents" className="mx-auto mb-12 max-w-4xl px-4">
         <h2 className="mb-8 text-center text-3xl font-bold">История</h2>
         <Accordion
           type="single"
           collapsible
-          value={openItem}
-          onValueChange={handleAccordionChange}
+          value={openHistoryItem!}
+          onValueChange={handleHistoryAccordionChange}
           className="rounded-lg bg-white shadow-md"
         >
           {profsouzHistory.map((item, index) => (
             <AccordionItem
-              value={`item-${index + 1}`}
+              value={`history-${index + 1}`}
               key={index}
               className="border-b border-[#003f81]/20 last:border-b-0"
             >
@@ -91,6 +103,46 @@ export default function AboutPage() {
               </AccordionTrigger>
               <AccordionContent className="px-6 py-4 leading-relaxed">
                 <div className="prose prose-sm max-w-none">{item.content}</div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </div>
+
+      {/* Document Section */}
+      <div className="mx-auto mb-12 max-w-4xl px-4">
+        <h2 className="mb-8 text-center text-3xl font-bold">Документы</h2>
+        <Accordion
+          type="single"
+          collapsible
+          value={openDocumentItem!}
+          onValueChange={handleDocumentAccordionChange}
+          className="rounded-lg bg-white shadow-md"
+        >
+          {documentsInfo.map((item: DocumentsInfo, index) => (
+            <AccordionItem
+              value={`document-${index + 1}`}
+              key={index}
+              className="border-b border-[#003f81]/20 last:border-b-0"
+            >
+              <AccordionTrigger className="px-6 py-4 transition-colors hover:bg-[#003f81]/5">
+                {item.name}
+              </AccordionTrigger>
+              <AccordionContent className="px-6 py-4 leading-relaxed">
+                <ul className="list-inside list-disc space-y-2">
+                  {item.content.map((content, contentIndex) => (
+                    <li key={contentIndex}>
+                      <Link
+                        href={item.link[contentIndex]!}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-600 hover:underline"
+                      >
+                        {content}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </AccordionContent>
             </AccordionItem>
           ))}
