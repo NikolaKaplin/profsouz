@@ -63,7 +63,9 @@ export default function AboutPage() {
           <CardContent className="space-y-4">
             <div className="flex items-center">
               <PhoneIcon className="mr-2 h-5 w-5" />
-              <span>+7 (977) 923-10-92</span>
+              <a className="hover:underline" href="tel:+7977923-10-92">
+                +7 (977) 923-10-92
+              </a>
             </div>
             <div className="flex items-center">
               <MailIcon className="mr-2 h-5 w-5" />

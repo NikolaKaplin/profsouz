@@ -22,7 +22,7 @@ export type HeadItem = {
 export default function Navbar({ items }: { items: HeadItem[] }) {
   return (
     <nav className="border-b bg-[#F2F8FD]">
-      <div className="container flex h-16 items-center justify-between px-4 text-[14px] text-[#003f81]">
+      <div className="container flex h-16 items-center justify-between px-4 text-[14px] text-[#003f81] lg:justify-stretch">
         <div className="flex items-center gap-4">
           <Link href="/" className="flex items-center gap-2">
             <Logo width={40} height={40} />
@@ -33,7 +33,7 @@ export default function Navbar({ items }: { items: HeadItem[] }) {
         </div>
 
         {/* Desktop menu */}
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center justify-center gap-6 text-center md:flex">
           {items.map((item, i) => (
             <Link
               key={i}
@@ -44,8 +44,12 @@ export default function Navbar({ items }: { items: HeadItem[] }) {
             </Link>
           ))}
           <Button className="group relative w-20 rounded-2xl bg-[#003f81]">
-            <b className="group-hover:hidden">Войти</b>
-            <LogIn className="hidden group-hover:block group-hover:animate-pulse" />
+            {" "}
+            <a href="/admin/login">
+              <b className="group-hover:hidden">Войти</b>
+
+              <LogIn className="hidden group-hover:block group-hover:animate-pulse" />
+            </a>
           </Button>
         </div>
 

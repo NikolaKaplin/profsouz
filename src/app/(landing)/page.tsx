@@ -4,7 +4,7 @@ import { NewCard } from "~/components/shared/new-card";
 import { useAwait } from "~/hooks/use-await";
 import { getLastNews } from "./actions";
 import landing from "./landing.module.css";
-import React from "react";
+import type React from "react";
 import { StatisticsSection } from "~/components/shared/statistics-section";
 import TestimonialCarousel from "~/components/shared/testimonial-carousel";
 import Link from "next/link";
@@ -16,14 +16,14 @@ export default function MainScreen() {
   const news = useAwait(getLastNews)?.slice(0, 4) ?? [];
 
   return (
-    <div className="flex flex-col gap-16">
+    <div className="flex flex-col gap-8 md:gap-16">
       <section id="mainscreen">
         <div
           className={`${landing.container} container relative mx-auto w-full px-4 py-12`}
         >
           <div>
             <div
-              className={`${landing.bubble} mb-8`}
+              className={`${landing.bubble} top-[50%] lg:top-[10%]`}
               style={{ "--duration": "1.1s" } as React.CSSProperties}
             >
               <h1 className="text-4xl font-semibold text-primary">
@@ -32,17 +32,20 @@ export default function MainScreen() {
             </div>
             <AbsoluteBubble
               duration={1200}
-              className="top-[40%] lg:left-[18%] lg:top-[24%]"
+              className="left-[10%] top-[40%] hidden lg:left-[18%] lg:top-[24%] lg:block"
             >
               каждый из нас
             </AbsoluteBubble>
             <AbsoluteBubble
               duration={1300}
-              className="left-[50%] top-[55%] lg:left-[50%] lg:top-[50%]"
+              className="left-[50%] top-[55%] hidden translate-x-[-50%] lg:left-[50%] lg:top-[50%] lg:block"
             >
               и все мы
             </AbsoluteBubble>
-            <AbsoluteBubble duration={1250} className="right-[22%] top-[22%]">
+            <AbsoluteBubble
+              duration={1250}
+              className="right-[5%] top-[22%] hidden lg:right-[22%] lg:block"
+            >
               вместе
             </AbsoluteBubble>
           </div>
@@ -50,7 +53,7 @@ export default function MainScreen() {
         <div className="container">
           <div>
             <h2 className="text-center text-2xl font-semibold">А также твои</h2>
-            <div className="flex gap-4">
+            <div className="grid grid-cols-2 gap-4 overflow-x-auto pb-4 md:flex-wrap">
               <AdvantageCard>Коллективный договор</AdvantageCard>
               <AdvantageCard>Опора и защита</AdvantageCard>
               <AdvantageCard>Комфортные условия труда</AdvantageCard>
@@ -59,7 +62,7 @@ export default function MainScreen() {
           </div>
         </div>
       </section>
-      <section id="about-union" className="py-16">
+      <section id="about-union" className="py-8 md:py-16">
         <div className="container mx-auto px-4">
           <div className="flex flex-col gap-8 lg:flex-row">
             {/* Left column */}
@@ -89,8 +92,8 @@ export default function MainScreen() {
 
             {/* Right column */}
             <div className="flex-1">
-              <div className="rounded-lg bg-blue-50 p-6">
-                <h3 className="mb-6 text-center text-2xl font-medium text-orange-500">
+              <div className="rounded-lg bg-blue-50 p-4 md:p-6">
+                <h3 className="mb-4 text-center text-xl font-medium text-orange-500 md:mb-6 md:text-2xl">
                   Наши главные задачи
                 </h3>
 
@@ -202,7 +205,7 @@ export default function MainScreen() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {news.map((item) => (
                 <NewCard key={item.id} props={item} />
               ))}
@@ -212,17 +215,14 @@ export default function MainScreen() {
       ) : null}
 
       {/* Виджет телеги */}
-      <TelegramWidget
-        channelName="your_channel_name" // Replace with your actual channel name
-        width={300}
-        height={500}
-        showPhotos={true}
-      />
+      <div className="flex justify-center">
+        <TelegramWidget channelName="yesstude" height={500} showPhotos={true} />
+      </div>
 
       {/** Приглос */}
-      <section className="bg-[#F8FAFC] py-16">
+      <section className="bg-[#F8FAFC] py-8 md:py-16">
         <div className="container mx-auto px-4">
-          <h2 className="mb-12 text-center text-3xl font-semibold text-[#003f81]">
+          <h2 className="mb-6 text-center text-2xl font-semibold text-[#003f81] md:mb-12 md:text-3xl">
             Вы еще не в профсоюзе?
           </h2>
 
@@ -298,7 +298,7 @@ function AbsoluteBubble({
 function AdvantageCard({ children }: { children: string }) {
   return (
     <div
-      className={`relative rounded-2xl bg-blue-50 p-6 text-[#003f81] shadow-lg transition-transform duration-300`}
+      className={`md:flex-shrink-1 relative min-w-[150px] flex-shrink-0 rounded-2xl bg-blue-50 p-2 text-[#003f81] shadow-lg transition-transform duration-300 md:min-w-0`}
     >
       <h4 className="font-medium">{children}</h4>
     </div>
