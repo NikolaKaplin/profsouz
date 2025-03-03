@@ -27,9 +27,11 @@ import { Event } from "payload-types";
 
 interface Props {
   props: Event;
+  hidden: boolean;
+  userId: number;
 }
 
-export const EventCard = ({ props }: Props) => {
+export const EventCard = ({ props, hidden, userId }: Props) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isSelectingTickets, setIsSelectingTickets] = useState(false);
   const [ticketCount, setTicketCount] = useState(1);
@@ -37,7 +39,7 @@ export const EventCard = ({ props }: Props) => {
   const [myTickets, setMyTickets] = useState<number>();
   useEffect(() => {
     (async () => {
-      const tickets = await getTicketsInEvent(3, props.id);
+      const tickets = await getTicketsInEvent(userId, props.id);
       setMyTickets(tickets);
     })();
   }, []);
@@ -47,12 +49,17 @@ export const EventCard = ({ props }: Props) => {
 
   const handleReserve = async () => {
     try {
-      const result = await ticketing(3, props.id, props.tickets, ticketCount);
+      const result = await ticketing(
+        userId,
+        props.id,
+        props.tickets,
+        ticketCount,
+      );
       if (result) {
-        setAvailableTickets(props.tickets - result.amount);
+        setAvailableTickets(props.tickets - result);
         setIsSelectingTickets(false);
         setTicketCount(1);
-        setMyTickets(result.amount);
+        setMyTickets(result);
       } else {
         // Handle error case
       }
@@ -158,49 +165,57 @@ export const EventCard = ({ props }: Props) => {
             </>
           )}
         </button>
-        {!isSelectingTickets ? (
+        {hidden ? null : (
           <>
-            {myTickets ? (
-              <div className="rounded-xl bg-[#003f81] p-2 text-white">
-                Заказано билетов: {myTickets}
-              </div>
+            {!isSelectingTickets ? (
+              <>
+                {myTickets ? (
+                  <div className="rounded-xl bg-[#003f81] p-2 text-white">
+                    Заказано билетов: {myTickets}
+                  </div>
+                ) : (
+                  <>
+                    <Button
+                      className="bg-[#003f81] text-white hover:bg-blue-700"
+                      onClick={() => setIsSelectingTickets(true)}
+                      disabled={availableTickets === 0}
+                    >
+                      {availableTickets > 0
+                        ? "Записаться"
+                        : "Билеты закончились"}
+                    </Button>
+                  </>
+                )}
+              </>
             ) : (
-              <Button
-                className="bg-[#003f81] text-white hover:bg-blue-700"
-                onClick={() => setIsSelectingTickets(true)}
-                disabled={availableTickets === 0}
-              >
-                {availableTickets > 0 ? "Записаться" : "Билеты закончились"}
-              </Button>
+              <div className="flex items-center space-x-2">
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={decrementTicket}
+                  disabled={ticketCount === 1}
+                >
+                  <Minus className="h-4 w-4" />
+                </Button>
+                <span className="w-8 text-center">{ticketCount}</span>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={incrementTicket}
+                  disabled={ticketCount === availableTickets}
+                >
+                  <Plus className="h-4 w-4" />
+                </Button>
+                <Button
+                  size="sm"
+                  className="bg-[#003f81] text-white hover:bg-blue-700"
+                  onClick={handleReserve}
+                >
+                  Подтвердить
+                </Button>
+              </div>
             )}
           </>
-        ) : (
-          <div className="flex items-center space-x-2">
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={decrementTicket}
-              disabled={ticketCount === 1}
-            >
-              <Minus className="h-4 w-4" />
-            </Button>
-            <span className="w-8 text-center">{ticketCount}</span>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={incrementTicket}
-              disabled={ticketCount === availableTickets}
-            >
-              <Plus className="h-4 w-4" />
-            </Button>
-            <Button
-              size="sm"
-              className="bg-[#003f81] text-white hover:bg-blue-700"
-              onClick={handleReserve}
-            >
-              Подтвердить
-            </Button>
-          </div>
         )}
       </CardFooter>
     </Card>

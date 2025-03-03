@@ -52,7 +52,7 @@ export async function ticketing(
       amount: ticketsCount,
     },
   });
-  return res;
+  return res.amount;
 }
 
 export async function getTicketsInEvent(userId: number, eventId: number) {

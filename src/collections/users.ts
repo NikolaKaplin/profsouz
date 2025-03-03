@@ -22,4 +22,5 @@ export const Users: CollectionConfig = {
       defaultValue: "user",
     },
   ],
+  upload: true,
 };

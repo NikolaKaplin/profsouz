@@ -11,7 +11,7 @@ const config = {
     reactCompiler: false,
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
 };
 

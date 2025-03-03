@@ -14,7 +14,6 @@ import TelegramWidget from "~/components/shared/telegram-widget";
 
 export default function MainScreen() {
   const news = useAwait(getLastNews)?.slice(0, 4) ?? [];
-
   return (
     <div className="flex flex-col gap-8 md:gap-16">
       <section id="mainscreen">
