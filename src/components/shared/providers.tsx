@@ -1,7 +1,5 @@
+import { MeProvider } from "~/hooks/use-me";
+
 export const Providers: React.FC<React.PropsWithChildren> = ({ children }) => {
-  return (
-    <>
-      {children}
-    </>
-  );
+  return <MeProvider>{children}</MeProvider>;
 };
