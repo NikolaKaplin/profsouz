@@ -44,6 +44,7 @@ export default function AboutPage() {
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2239.3537875177085!2d37.67745461264303!3d55.85652797301067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b536a4818eeb13%3A0x1d40a3f60d9f603b!2z0JrQvtC70LvQtdC00LYg0YHQvtCy0YDQtdC80LXQvdC90YvRhSDRgtC10YXQvdC-0LvQvtCz0LjQuQ!5e0!3m2!1sru!2sru!4v1740609936410!5m2!1sru!2sru"
             width="100%"
             height="100%"
+            title="ktsMap"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"

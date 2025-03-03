@@ -5,7 +5,7 @@ import { getEvents, getLastNews } from "../actions";
 import { EventCard } from "~/components/shared/event-card";
 import { useEffect, useState } from "react";
 import { User } from "payload-types";
-import { getCurrentSession, getMe } from "~/server/payload";
+import { getMe } from "~/server/payload";
 
 export default function Home() {
   const events = useAwait(getEvents) ?? [];
@@ -14,7 +14,6 @@ export default function Home() {
   useEffect(() => {
     (async () => {
       const getUser = await getMe();
-      console.log(getUser);
       setUser(getUser!);
     })();
   }, []);

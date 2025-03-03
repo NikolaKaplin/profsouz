@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { getS3Images } from "~/lib/s3Actions";
 
 export default async function S3ImagesPage() {

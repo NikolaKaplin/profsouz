@@ -10,7 +10,6 @@ import TestimonialCarousel from "~/components/shared/testimonial-carousel";
 import Link from "next/link";
 import { Button } from "~/components/ui/button";
 import { steps } from "./constants";
-import TelegramWidget from "~/components/shared/telegram-widget";
 
 export default function MainScreen() {
   const news = useAwait(getLastNews)?.slice(0, 4) ?? [];
@@ -212,11 +211,6 @@ export default function MainScreen() {
           </div>
         </section>
       ) : null}
-
-      {/* Виджет телеги */}
-      <div className="flex justify-center">
-        <TelegramWidget channelName="yesstude" height={500} showPhotos={true} />
-      </div>
 
       {/** Приглос */}
       <section className="bg-[#F8FAFC] py-8 md:py-16">
