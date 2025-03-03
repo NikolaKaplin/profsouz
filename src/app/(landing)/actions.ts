@@ -1,5 +1,6 @@
 "use server";
 
+import { Event } from "payload-types";
 import { getPayload } from "~/server/payload";
 
 export async function getLastNews() {
