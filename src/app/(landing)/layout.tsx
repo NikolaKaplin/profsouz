@@ -9,7 +9,7 @@ import { Toaster } from "sonner";
 
 export { metadata } from "../metadata";
 
-const comfortaa = Comfortaa();
+const comfortaa = Comfortaa({ subsets: ["cyrillic", "latin"] });
 
 export default function RootLayout({
   children,

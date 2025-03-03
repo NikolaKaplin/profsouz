@@ -1,5 +1,8 @@
 "use client";
 
+import { Files } from "lucide-react";
+import Link from "next/link";
+
 export const Footer = () => {
   return (
     <footer className="bg-gray-100 py-8 text-gray-600">
@@ -109,6 +112,10 @@ export const Footer = () => {
                 </a>
               </div>
             </div>
+            <Link className="flex hover:underline" href="/about#documents">
+              <Files />
+              Документы
+            </Link>
             <p className="text-sm">© 2025 Профсоюз-КСТ</p>
           </div>
         </div>

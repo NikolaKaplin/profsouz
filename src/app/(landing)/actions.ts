@@ -1,5 +1,6 @@
 "use server";
 
+import * as AWS from "@aws-sdk/client-s3";
 import { Event } from "payload-types";
 import { getPayload } from "~/server/payload";
 

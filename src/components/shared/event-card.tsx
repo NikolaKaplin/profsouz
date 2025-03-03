@@ -48,7 +48,7 @@ export const EventCard = ({ props }: Props) => {
 
   const handleReserve = async () => {
     try {
-      const result = await ticketing(3, props.id, props.tickets, ticketCount);
+      const result = await ticketing(1, props.id, props.tickets, ticketCount);
       if (result) {
         setAvailableTickets(props.tickets - result.amount);
         setIsSelectingTickets(false);
