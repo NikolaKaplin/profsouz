@@ -24,12 +24,12 @@ export default function Home() {
         <h1 className="mb-8 text-center text-3xl font-bold text-[#003f81]">
           Мероприятия
         </h1>
-        {user ? (
+        {user?.id ? (
           <div className="px-4 py-6 sm:px-0">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {events.map((event) => (
                 <EventCard
-                  userId={user.id ? user.id : -1}
+                  userId={user.id}
                   hidden={false}
                   key={event.id}
                   props={event}
@@ -41,12 +41,7 @@ export default function Home() {
           <div className="px-4 py-6 sm:px-0">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {events.map((event) => (
-                <EventCard
-                  userId={-1}
-                  hidden={true}
-                  key={event.id}
-                  props={event}
-                />
+                <EventCard hidden={true} key={event.id} props={event} />
               ))}
             </div>
           </div>

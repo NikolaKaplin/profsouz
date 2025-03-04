@@ -72,10 +72,8 @@ export default function Navbar({ items }: { items: HeadItem[] }) {
               />
             </Avatar>
           ) : (
-            <Link className="bg-blue-500" href="/admin/login">
-              <b className="group-hover:hidden">Войти</b>
-
-              <LogIn className="hidden group-hover:block group-hover:animate-pulse" />
+            <Link href="/admin/login">
+              <Button className="items-center">Войти</Button>
             </Link>
           )}
         </div>
@@ -105,11 +103,11 @@ export default function Navbar({ items }: { items: HeadItem[] }) {
                   <h3>{user.email}</h3>
                 </div>
               ) : (
-                <Button className="group relative w-20 rounded-2xl bg-[#003f81]">
-                  <a className="h-full w-full" href="/admin/login">
-                    <b>Войти</b>
-                  </a>
-                </Button>
+                <Link href="/admin/login">
+                  <Button className="group relative w-20 rounded-2xl bg-[#003f81]">
+                    Войти
+                  </Button>
+                </Link>
               )}
             </SheetHeader>
             <div className="mt-6 flex flex-col gap-4">

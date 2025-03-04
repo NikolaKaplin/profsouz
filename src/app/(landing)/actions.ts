@@ -1,5 +1,7 @@
 "use server";
 
+import { User } from "payload-types";
+import { number } from "zod";
 import { getPayload } from "~/server/payload";
 
 export async function getLastNews() {
@@ -20,6 +22,7 @@ export async function getNewsById(id: string) {
   });
   return slug;
 }
+
 export async function getEvents() {
   const payload = await getPayload();
   const events = await payload.find({
@@ -54,16 +57,21 @@ export async function ticketing(
   return res.amount;
 }
 
-export async function getTicketsInEvent(userId: number, eventId: number) {
+export async function getTickets() {
   const payload = await getPayload();
   const tickets = await payload.find({
     collection: "tickets",
-    user: userId,
   });
-  const result = tickets.docs.find((ticket) => {
-    const event = ticket.event;
-    return typeof event !== "number" && event.id === eventId;
-  });
-  if (result?.amount == undefined) return 0;
-  return result?.amount;
+  return tickets.docs;
+}
+
+export async function getTicketsInEvent(userId: number, eventId: number) {
+  const tickets = await getTickets();
+  const sortByUser = tickets.filter((item) => item.user.id == userId);
+  const sortByEvent = sortByUser.find((item) => item.event.id == eventId);
+  if (sortByEvent?.amount) {
+    return sortByEvent?.amount;
+  } else {
+    return "none";
+  }
 }

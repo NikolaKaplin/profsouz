@@ -65,10 +65,10 @@ export default function MainScreen() {
           <div className="flex flex-col gap-8 lg:flex-row">
             {/* Left column */}
             <div className="flex-1">
-              <h3 className="mb-4 text-xl font-medium text-orange-500">
+              <h3 className="mb-4 text-xl font-medium text-orange-600">
                 Что это такое?
               </h3>
-              <h2 className="mb-4 border-b border-orange-400 pb-2 text-3xl font-semibold text-primary">
+              <h2 className="mb-4 border-b border-orange-600 pb-2 text-3xl font-semibold text-primary">
                 Профсоюз - это
               </h2>
               <p className="mb-4 text-gray-700">
@@ -91,7 +91,7 @@ export default function MainScreen() {
             {/* Right column */}
             <div className="flex-1">
               <div className="rounded-lg bg-blue-50 p-4 md:p-6">
-                <h3 className="mb-4 text-center text-xl font-medium text-orange-500 md:mb-6 md:text-2xl">
+                <h3 className="mb-4 text-center text-xl font-medium text-orange-600 md:mb-6 md:text-2xl">
                   Наши главные задачи
                 </h3>
 
@@ -224,7 +224,7 @@ export default function MainScreen() {
             <div className="space-y-8">
               {steps.map((step) => (
                 <div key={step.number} className="flex gap-6">
-                  <div className="text-3xl font-bold text-[#003f81] opacity-50">
+                  <div className="text-3xl font-bold text-blue-500">
                     {step.number}
                   </div>
                   <div className="text-gray-700">{step.text}</div>
@@ -293,7 +293,7 @@ function AdvantageCard({ children }: { children: string }) {
     <div
       className={`md:flex-shrink-1 relative min-w-[150px] flex-shrink-0 rounded-2xl bg-blue-50 p-2 text-[#003f81] shadow-lg transition-transform duration-300 md:min-w-0`}
     >
-      <h4 className="font-medium">{children}</h4>
+      <h3 className="font-medium">{children}</h3>
     </div>
   );
 }

@@ -18,19 +18,19 @@ export function StatisticsSection() {
         </h2>
 
         <div className="mb-8 flex flex-col items-center justify-center md:flex-row">
-          <div className="mr-4 text-6xl font-bold text-orange-500">60%</div>
+          <div className="mr-4 text-6xl font-bold text-orange-600">60%</div>
           <div className="text-xl text-primary">
             работников нашей организации
           </div>
         </div>
 
         <div className="mx-auto mb-12 w-full max-w-2xl">
-          <div className="h-4 w-[60%] rounded-full bg-orange-500"></div>
+          <div className="h-4 w-[60%] rounded-full bg-orange-600"></div>
         </div>
 
         <div className="mb-12 text-center text-xl text-primary">
           А это{" "}
-          <span className="font-semibold text-orange-500">149 человек</span>,
+          <span className="font-semibold text-orange-600">149 человек</span>,
           которым наш профсоюз предоставляет
         </div>
 
@@ -47,7 +47,7 @@ export function StatisticsSection() {
                     : "bg-transparent text-primary/80 hover:bg-white/50"
                 }`}
               >
-                <span className="mr-6 w-12 text-right text-3xl font-light text-blue-200">
+                <span className="mr-6 w-12 text-right text-3xl font-light text-blue-500">
                   {item.number}
                 </span>
                 <span className="text-lg">{item.title}</span>

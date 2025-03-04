@@ -28,7 +28,7 @@ import { Event } from "payload-types";
 interface Props {
   props: Event;
   hidden: boolean;
-  userId: number;
+  userId?: number;
 }
 
 export const EventCard = ({ props, hidden, userId }: Props) => {
@@ -36,13 +36,17 @@ export const EventCard = ({ props, hidden, userId }: Props) => {
   const [isSelectingTickets, setIsSelectingTickets] = useState(false);
   const [ticketCount, setTicketCount] = useState(1);
   const [availableTickets, setAvailableTickets] = useState(props.tickets);
-  const [myTickets, setMyTickets] = useState<number>();
+  const [myTickets, setMyTickets] = useState<number | string>();
   useEffect(() => {
     (async () => {
-      const tickets = await getTicketsInEvent(userId, props.id);
-      setMyTickets(tickets);
+      if (hidden) {
+        setMyTickets(0);
+      } else {
+        const tickets = await getTicketsInEvent(userId!, props.id);
+        setMyTickets(tickets);
+      }
     })();
-  }, []);
+  }, [userId]);
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
@@ -50,7 +54,7 @@ export const EventCard = ({ props, hidden, userId }: Props) => {
   const handleReserve = async () => {
     try {
       const result = await ticketing(
-        userId,
+        userId!,
         props.id,
         props.tickets,
         ticketCount,
@@ -169,7 +173,7 @@ export const EventCard = ({ props, hidden, userId }: Props) => {
           <>
             {!isSelectingTickets ? (
               <>
-                {myTickets ? (
+                {myTickets != "none" ? (
                   <div className="rounded-xl bg-[#003f81] p-2 text-white">
                     Заказано билетов: {myTickets}
                   </div>
