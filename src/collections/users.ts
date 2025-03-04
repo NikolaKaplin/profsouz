@@ -1,4 +1,4 @@
-import { type CollectionConfig } from "payload";
+import type { CollectionConfig } from "payload";
 
 export const Users: CollectionConfig = {
   slug: "users",
@@ -6,7 +6,9 @@ export const Users: CollectionConfig = {
     singular: "пользователь",
     plural: "пользователи",
   },
-  auth: true,
+  auth: {
+    maxLoginAttempts: 100,
+  },
   admin: {
     useAsTitle: "email",
   },
@@ -22,5 +24,8 @@ export const Users: CollectionConfig = {
       defaultValue: "user",
     },
   ],
+  access: {
+    read: () => true,
+  },
   upload: true,
 };

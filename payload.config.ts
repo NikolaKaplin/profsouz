@@ -11,7 +11,6 @@ import { News } from "~/collections/news";
 import { ru } from "@payloadcms/translations/languages/ru";
 import { Events } from "~/collections/events";
 import { Tickets } from "~/collections/tickets";
-import { users } from "~/payload-generated-schema";
 import { Users } from "~/collections/users";
 
 const filename = fileURLToPath(import.meta.url);
@@ -45,6 +44,7 @@ export default buildConfig({
     s3Storage({
       collections: {
         news: true,
+        events: true,
       },
       bucket: process.env.S3_BUCKET!,
       config: {
