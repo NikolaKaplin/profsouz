@@ -7,12 +7,19 @@ export const Users: CollectionConfig = {
     plural: "пользователи",
   },
   auth: {
+    loginWithUsername: true,
     maxLoginAttempts: 100,
   },
   admin: {
-    useAsTitle: "email",
+    useAsTitle: "fullName",
   },
   fields: [
+    {
+      name: "fullName",
+      type: "text",
+      label: "Имя и Фамилия",
+      required: true,
+    },
     {
       name: "role",
       type: "select",
@@ -23,9 +30,16 @@ export const Users: CollectionConfig = {
       required: true,
       defaultValue: "user",
     },
+    {
+      name: "avatar",
+      type: "upload",
+      relationTo: "avatars",
+      label: "Аватар пользователя",
+      required: false,
+    },
   ],
   access: {
     read: () => true,
   },
-  upload: true,
+  upload: false,
 };

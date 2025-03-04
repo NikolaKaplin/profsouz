@@ -1,7 +1,5 @@
 "use server";
 
-import { User } from "payload-types";
-import { number } from "zod";
 import { getPayload } from "~/server/payload";
 
 export async function getLastNews() {
@@ -36,6 +34,7 @@ export async function ticketing(
   eventId: number,
   amount: number,
   ticketsCount: number,
+  endDate: string,
 ) {
   const payload = await getPayload();
   const reductionOfTickets = await payload.update({
@@ -52,6 +51,7 @@ export async function ticketing(
       user: userId,
       event: eventId,
       amount: ticketsCount,
+      endDate: endDate,
     },
   });
   return res.amount;
@@ -67,8 +67,15 @@ export async function getTickets() {
 
 export async function getTicketsInEvent(userId: number, eventId: number) {
   const tickets = await getTickets();
-  const sortByUser = tickets.filter((item) => item.user.id == userId);
-  const sortByEvent = sortByUser.find((item) => item.event.id == eventId);
+
+  const sortByUser = tickets.filter((item) => {
+    const user = item.user;
+    return typeof user != "number" && user.id == userId;
+  });
+  const sortByEvent = sortByUser.find((item) => {
+    const event = item.event;
+    return typeof event != "number" && event.id == eventId;
+  });
   if (sortByEvent?.amount) {
     return sortByEvent?.amount;
   } else {

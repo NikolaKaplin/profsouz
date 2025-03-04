@@ -58,6 +58,7 @@ export const EventCard = ({ props, hidden, userId }: Props) => {
         props.id,
         props.tickets,
         ticketCount,
+        props.endDate,
       );
       if (result) {
         setAvailableTickets(props.tickets - result);

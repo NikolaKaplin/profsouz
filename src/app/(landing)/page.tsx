@@ -254,12 +254,14 @@ export default function MainScreen() {
                   Заявление-о-выходе-из-профсоюза
                 </a>
                 <br />
-                <Button
-                  variant="outline"
-                  className="border-[#003f81] text-[#003f81] hover:bg-[#003f81] hover:text-white"
-                >
-                  <Link href="/about#documents">Скачать документы</Link>
-                </Button>
+                <Link href="/about#documents">
+                  <Button
+                    variant="outline"
+                    className="border-[#003f81] text-[#003f81] hover:bg-[#003f81] hover:text-white"
+                  >
+                    Скачать документы
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>

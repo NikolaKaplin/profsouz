@@ -1,6 +1,6 @@
 "use client";
 
-import { LogIn, Menu } from "lucide-react";
+import { LogOut, Menu } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState, type JSX } from "react";
 import { Button } from "../../components/ui/button";
@@ -11,10 +11,15 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "../../components/ui/sheet";
-import { User } from "payload-types";
+import { Avatar as AvatarType, User } from "payload-types";
 import { getMe } from "~/server/payload";
 import { Avatar, AvatarImage } from "../ui/avatar";
-import { useRouter } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 export type HeadItem = {
   path: string;
@@ -24,10 +29,20 @@ export type HeadItem = {
 
 export default function Navbar({ items }: { items: HeadItem[] }) {
   const [user, setUser] = useState<User>();
+  const [avatar, setAvatar] = useState<AvatarType | undefined>(undefined);
+
   useEffect(() => {
     (async () => {
       const getUser = await getMe();
-      setUser(getUser!);
+
+      if (getUser) {
+        setUser(getUser!);
+        if (typeof getUser.avatar !== "number") {
+          setAvatar(getUser.avatar!);
+        } else {
+          setAvatar(undefined);
+        }
+      }
     })();
   }, []);
 
@@ -64,13 +79,28 @@ export default function Navbar({ items }: { items: HeadItem[] }) {
             </Link>
           ))}
           {user ? (
-            <Avatar className="h-10 w-10 rounded-full ring-2 ring-indigo-400 transition-all duration-300 group-hover:ring-indigo-300">
-              <AvatarImage
-                className="rounded-full"
-                src={user.url ? user.url : undefined}
-                alt={"User avatar"}
-              />
-            </Avatar>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Avatar className="h-10 w-10 cursor-pointer rounded-full ring-2 ring-indigo-400 transition-all duration-300 hover:ring-indigo-300">
+                  <AvatarImage
+                    className="rounded-full"
+                    src={avatar?.url ? avatar?.url : undefined}
+                    alt={"User avatar"}
+                  />
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-white" align="end">
+                <DropdownMenuItem className="hover:cursor-pointer" asChild>
+                  <Link
+                    href="/admin/logout"
+                    className="flex items-center gap-2"
+                  >
+                    <LogOut className="h-4 w-4" />
+                    <span>Выйти</span>
+                  </Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           ) : (
             <Link href="/admin/login">
               <Button className="items-center">Войти</Button>
@@ -96,7 +126,7 @@ export default function Navbar({ items }: { items: HeadItem[] }) {
                   <Avatar className="h-10 w-10 rounded-full ring-2 ring-indigo-400 transition-all duration-300 group-hover:ring-indigo-300">
                     <AvatarImage
                       className="rounded-full"
-                      src={user.url ? user.url : undefined}
+                      src={avatar?.url ? avatar?.url : undefined}
                       alt={"User avatar"}
                     />
                   </Avatar>
@@ -133,6 +163,15 @@ export default function Navbar({ items }: { items: HeadItem[] }) {
                   </span>
                 </Link>
               ))}
+              {user && (
+                <Link
+                  href="/admin/logout"
+                  className="flex items-center gap-2 text-lg font-medium text-[#003f81] hover:text-primary"
+                >
+                  <LogOut className="h-5 w-5" />
+                  <span className="no-underline hover:underline">Выйти</span>
+                </Link>
+              )}
             </div>
           </SheetContent>
         </Sheet>

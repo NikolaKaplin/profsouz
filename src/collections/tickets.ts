@@ -22,6 +22,12 @@ export const Tickets: CollectionConfig = {
       required: true,
     },
     {
+      name: "endDate",
+      label: "Дата окончания регистрации",
+      type: "date",
+      required: true,
+    },
+    {
       name: "amount",
       label: "Количество",
       type: "number",

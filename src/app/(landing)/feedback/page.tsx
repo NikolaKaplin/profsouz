@@ -29,10 +29,6 @@ export default function ContactPage() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Здесь должна быть логика отправки формы на сервер
-    // Например, вызов API или отправка данных в базу данных
-
-    // Имитация отправки формы
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
 

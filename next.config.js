@@ -8,7 +8,7 @@ import { withPayload } from "@payloadcms/next/withPayload";
 /** @type {import("next").NextConfig} */
 const config = {
   experimental: {
-    reactCompiler: false,
+    reactCompiler: true,
   },
   typescript: {
     ignoreBuildErrors: false,

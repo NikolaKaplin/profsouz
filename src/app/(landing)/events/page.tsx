@@ -1,7 +1,7 @@
 "use client";
 
 import { useAwait } from "~/hooks/use-await";
-import { getEvents, getLastNews } from "../actions";
+import { getEvents } from "../actions";
 import { EventCard } from "~/components/shared/event-card";
 import { useEffect, useState } from "react";
 import { User } from "payload-types";
