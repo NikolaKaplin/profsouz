@@ -29,14 +29,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname, "src/components"),
     },
     components: {
-      providers: [
-        {
-          path: path.resolve(
-            dirname,
-            "/shared/AdminAccessProvider#AdminAccessProvider",
-          ),
-        },
-      ],
+      providers: ["/shared/AdminAccessProvider#AdminAccessProvider"],
       graphics: {
         Logo: {
           path: "/shared/logo",

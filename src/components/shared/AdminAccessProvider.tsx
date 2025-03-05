@@ -8,9 +8,6 @@ export const AdminAccessProvider = async ({
   children: React.ReactNode;
 }) => {
   const user = await getMe();
-  if (!user) return <>{children}</>;
-  if (user.role !== "admin") {
-    redirect("/");
-  }
+  if (user && user.role !== "admin") redirect("/");
   return <>{children}</>;
 };
