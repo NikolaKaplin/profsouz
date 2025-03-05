@@ -20,6 +20,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { LogoutButton } from "./logout-button";
 
 export type HeadItem = {
   path: string;
@@ -91,13 +92,7 @@ export default function Navbar({ items }: { items: HeadItem[] }) {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="bg-white" align="end">
                 <DropdownMenuItem className="hover:cursor-pointer" asChild>
-                  <Link
-                    href="/admin/logout"
-                    className="flex items-center gap-2"
-                  >
-                    <LogOut className="h-4 w-4" />
-                    <span>Выйти</span>
-                  </Link>
+                  <LogoutButton />
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

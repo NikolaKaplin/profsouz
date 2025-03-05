@@ -40,6 +40,10 @@ export const Users: CollectionConfig = {
   ],
   access: {
     read: () => true,
+    admin: ({ req }) => {
+      if (!req.user) return false;
+      return req.user.role === "admin";
+    },
   },
   upload: false,
 };

@@ -13,7 +13,6 @@ import { Events } from "~/collections/events";
 import { Tickets } from "~/collections/tickets";
 import { Users } from "~/collections/users";
 import { Avatars } from "~/collections/avatars";
-
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -30,6 +29,14 @@ export default buildConfig({
       baseDir: path.resolve(dirname, "src/components"),
     },
     components: {
+      providers: [
+        {
+          path: path.resolve(
+            dirname,
+            "/shared/AdminAccessProvider#AdminAccessProvider",
+          ),
+        },
+      ],
       graphics: {
         Logo: {
           path: "/shared/logo",

@@ -3,8 +3,8 @@ import type { CollectionConfig } from "payload";
 export const Avatars: CollectionConfig = {
   slug: "avatars",
   labels: {
-    singular: "Медиафайл",
-    plural: "Медиафайлы",
+    singular: "медиафайл",
+    plural: "медиафайлы",
   },
   upload: {
     mimeTypes: ["image/jpeg", "image/png", "image/gif", "image/webp"],
