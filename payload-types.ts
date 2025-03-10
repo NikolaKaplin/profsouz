@@ -71,6 +71,7 @@ export interface Config {
     events: Event;
     tickets: Ticket;
     avatars: Avatar;
+    statistics: Statistic;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -82,6 +83,7 @@ export interface Config {
     events: EventsSelect<false> | EventsSelect<true>;
     tickets: TicketsSelect<false> | TicketsSelect<true>;
     avatars: AvatarsSelect<false> | AvatarsSelect<true>;
+    statistics: StatisticsSelect<false> | StatisticsSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -244,6 +246,17 @@ export interface Ticket {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "statistics".
+ */
+export interface Statistic {
+  id: number;
+  title: string;
+  content: string;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -268,6 +281,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'avatars';
         value: number | Avatar;
+      } | null)
+    | ({
+        relationTo: 'statistics';
+        value: number | Statistic;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -402,6 +419,16 @@ export interface AvatarsSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "statistics_select".
+ */
+export interface StatisticsSelect<T extends boolean = true> {
+  title?: T;
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

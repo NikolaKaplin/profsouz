@@ -16,6 +16,7 @@ export async function getS3Images() {
     Bucket: process.env.S3_BUCKET,
     // Опционально: укажите префикс, если изображения находятся в определенной папке
     // Prefix: 'images/',
+    Prefix: "",
   });
 
   try {

@@ -15,3 +15,9 @@ export type BenefitItem = {
   title: string;
   description: string;
 };
+
+export type EmailFeedback = {
+  name: string;
+  email?: string;
+  message: string;
+};

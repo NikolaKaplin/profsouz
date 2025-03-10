@@ -4,11 +4,15 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BenefitItem } from "~/app/(landing)/types";
 import { benefitItems } from "~/app/(landing)/constants";
+import { useAwait } from "~/hooks/use-await";
+import { getLastUser, getStatistics } from "~/app/(landing)/actions";
 
 export function StatisticsSection() {
   const [selectedBenefit, setSelectedBenefit] = useState<BenefitItem>(
     benefitItems[0]!,
   );
+  const users = useAwait(getLastUser);
+  const statistics = useAwait(getStatistics);
 
   return (
     <section className="bg-blue-50 py-16">
@@ -18,7 +22,9 @@ export function StatisticsSection() {
         </h2>
 
         <div className="mb-8 flex flex-col items-center justify-center md:flex-row">
-          <div className="mr-4 text-6xl font-bold text-orange-600">60%</div>
+          <div className="mr-4 text-6xl font-bold text-orange-600">
+            {statistics ? statistics[0]?.content : null}%
+          </div>
           <div className="text-xl text-primary">
             работников нашей организации
           </div>
@@ -30,8 +36,10 @@ export function StatisticsSection() {
 
         <div className="mb-12 text-center text-xl text-primary">
           А это{" "}
-          <span className="font-semibold text-orange-600">149 человек</span>,
-          которым наш профсоюз предоставляет
+          <span className="font-semibold text-orange-600">
+            {users ? users[0]?.id : null} человек
+          </span>
+          , которым наш профсоюз предоставляет
         </div>
 
         <div className="flex flex-col gap-8 lg:flex-row">

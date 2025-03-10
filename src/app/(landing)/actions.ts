@@ -82,3 +82,21 @@ export async function getTicketsInEvent(userId: number, eventId: number) {
     return "none";
   }
 }
+
+export async function getLastUser() {
+  const payload = await getPayload();
+  const lastUser = await payload.find({
+    collection: "users",
+    sort: "deck",
+  });
+  return lastUser.docs;
+}
+
+export async function getStatistics() {
+  const payload = await getPayload();
+  const statistics = await payload.find({
+    collection: "statistics",
+    sort: "ask",
+  });
+  return statistics.docs;
+}
