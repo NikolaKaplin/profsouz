@@ -20,7 +20,7 @@ type Testimonial = {
 
 const testimonials: Testimonial[] = [
   {
-    id: 1,
+    id: 2,
     name: "Алексей Геннадьевич Нефёдов",
     position: "Председатель совета молодых педагогов",
     image:
@@ -29,8 +29,8 @@ const testimonials: Testimonial[] = [
 "`,
   },
   {
-    id: 2,
-    name: "Глушенкова Оксана Борисовна",
+    id: 1,
+    name: "Глушенкова Светлана Борисовна",
     position: "Председатель первичной профсоюзной организации",
     image: "https://storage.yandexcloud.net/profsouz/humans/Glushenkova.jpg",
     quote:
