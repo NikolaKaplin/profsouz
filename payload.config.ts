@@ -13,7 +13,6 @@ import { Events } from "~/collections/events";
 import { Tickets } from "~/collections/tickets";
 import { Users } from "~/collections/users";
 import { Avatars } from "~/collections/avatars";
-import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import { Statistics } from "~/collections/statistics";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);

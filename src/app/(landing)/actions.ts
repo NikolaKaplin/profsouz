@@ -96,7 +96,7 @@ export async function getStatistics() {
   const payload = await getPayload();
   const statistics = await payload.find({
     collection: "statistics",
-    sort: "ask",
+    sort: "deck",
   });
   return statistics.docs;
 }
