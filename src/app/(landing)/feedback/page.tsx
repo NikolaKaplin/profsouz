@@ -10,7 +10,7 @@ import { Button } from "~/components/ui/button";
 import { Input } from "~/components/ui/input";
 import { Textarea } from "~/components/ui/textarea";
 import { EmailFeedback } from "../types";
-//import { sendEmailFeedback } from "../actions";
+import { sendFeedBack } from "../actions";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState<EmailFeedback>();
@@ -26,13 +26,11 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // (async () => {
-    //   const send = await sendEmailFeedback(formData!);
-    //   return send;
-    // })();
+    (async () => {
+      await sendFeedBack(formData?.email!, formData?.message!);
+    })();
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    setFormData({ name: "", email: "", message: "" });
     setIsSubmitting(false);
   };
 

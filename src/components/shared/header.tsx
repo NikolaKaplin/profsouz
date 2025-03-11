@@ -64,7 +64,7 @@ export default function Navbar({ items }: { items: HeadItem[] }) {
           {user?.role == "admin" ? (
             <Link
               key={null}
-              href={"admin"}
+              href={"/admin"}
               className="text-sm font-medium hover:text-primary"
             >
               <span className="no-underline hover:underline">Админ панель</span>
@@ -139,7 +139,7 @@ export default function Navbar({ items }: { items: HeadItem[] }) {
               {user?.role == "admin" ? (
                 <Link
                   key={null}
-                  href={"admin"}
+                  href={"/admin"}
                   className="text-lg font-medium text-[#003f81] hover:text-primary"
                 >
                   <span className="no-underline hover:underline">
