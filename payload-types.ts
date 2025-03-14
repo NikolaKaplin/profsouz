@@ -251,7 +251,7 @@ export interface Ticket {
 export interface Statistic {
   id: number;
   title: string;
-  content: string;
+  allUsers: number;
   updatedAt: string;
   createdAt: string;
 }
@@ -426,7 +426,7 @@ export interface AvatarsSelect<T extends boolean = true> {
  */
 export interface StatisticsSelect<T extends boolean = true> {
   title?: T;
-  content?: T;
+  allUsers?: T;
   updatedAt?: T;
   createdAt?: T;
 }

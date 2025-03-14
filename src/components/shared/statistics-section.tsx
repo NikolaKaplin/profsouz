@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { BenefitItem } from "~/app/(landing)/types";
+import type { BenefitItem } from "~/app/(landing)/types";
 import { benefitItems } from "~/app/(landing)/constants";
 import { useAwait } from "~/hooks/use-await";
 import { getLastUser, getStatistics } from "~/app/(landing)/actions";
@@ -23,7 +23,7 @@ export function StatisticsSection() {
 
         <div className="mb-8 flex flex-col items-center justify-center md:flex-row">
           <div className="mr-4 text-6xl font-bold text-orange-600">
-            {statistics ? statistics[0]?.content : null}%
+            {statistics && users ? (users / statistics) * 100 : null}%
           </div>
           <div className="text-xl text-primary">
             работников нашей организации
@@ -34,16 +34,43 @@ export function StatisticsSection() {
           <div className="h-4 w-[60%] rounded-full bg-orange-600"></div>
         </div>
 
-        <div className="mb-12 text-center text-xl text-primary">
+        <div className="mb-4 text-center text-xl text-primary">
           А это{" "}
           <span className="font-semibold text-orange-600">
-            {users ? users[0]?.id : null} человек
+            {users ? users : null} человек
           </span>
           , которым наш профсоюз предоставляет
         </div>
 
+        <div className="mb-12 grid grid-cols-1 gap-6 rounded-lg bg-white p-6 shadow-md sm:grid-cols-3">
+          <div className="flex flex-col items-center justify-center rounded-lg bg-blue-50 p-4 transition-all hover:shadow-md">
+            <div className="text-lg font-medium text-primary">
+              Всего в профсоюзе
+            </div>
+            <div className="mt-2 text-3xl font-bold text-primary">
+              {statistics ? statistics : 0}
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center justify-center rounded-lg bg-blue-50 p-4 transition-all hover:shadow-md">
+            <div className="text-lg font-medium text-primary">С нами</div>
+            <div className="mt-2 text-3xl font-bold text-orange-600">
+              {users ? users : 0}
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center justify-center rounded-lg bg-blue-50 p-4 transition-all hover:shadow-md">
+            <div className="text-lg font-medium text-primary">Охват</div>
+            <div className="mt-2 text-3xl font-bold text-green-600">
+              {statistics && users
+                ? ((users / statistics) * 100).toFixed(1)
+                : 0}
+              %
+            </div>
+          </div>
+        </div>
+
         <div className="flex flex-col gap-8 lg:flex-row">
-          {/* Left column - benefit options */}
           <div className="w-full lg:w-1/3">
             {benefitItems.map((item) => (
               <button
@@ -63,7 +90,6 @@ export function StatisticsSection() {
             ))}
           </div>
 
-          {/* Right column - description */}
           <div className="relative w-full overflow-hidden rounded-lg bg-white p-8 shadow-md lg:w-2/3">
             <div className="pointer-events-none absolute bottom-0 right-0 opacity-10">
               <svg

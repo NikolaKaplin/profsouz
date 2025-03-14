@@ -87,18 +87,18 @@ export async function getLastUser() {
   const payload = await getPayload();
   const lastUser = await payload.find({
     collection: "users",
-    sort: "deck",
   });
-  return lastUser.docs;
+  return lastUser.docs.length;
 }
 
+//Доделать парсинг в других файлах
 export async function getStatistics() {
   const payload = await getPayload();
   const statistics = await payload.find({
     collection: "statistics",
     sort: "desc",
   });
-  return statistics.docs;
+  return statistics.docs[0]?.allUsers;
 }
 
 export async function sendFeedBack(email: string, data: string) {

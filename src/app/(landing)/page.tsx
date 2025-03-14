@@ -2,7 +2,7 @@
 
 import { NewCard } from "~/components/shared/new-card";
 import { useAwait } from "~/hooks/use-await";
-import { getLastNews, getStatistics } from "./actions";
+import { getLastNews } from "./actions";
 import landing from "./landing.module.css";
 import type React from "react";
 import { StatisticsSection } from "~/components/shared/statistics-section";

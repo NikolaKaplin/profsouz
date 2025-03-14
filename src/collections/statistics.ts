@@ -14,9 +14,9 @@ export const Statistics: CollectionConfig = {
       required: true,
     },
     {
-      name: "content",
-      type: "text",
-      label: "Процент",
+      name: "allUsers",
+      type: "number",
+      label: "Все члены профсоюза",
       required: true,
     },
   ],
