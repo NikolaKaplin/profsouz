@@ -12,7 +12,7 @@ export function StatisticsSection() {
     benefitItems[0]!,
   );
   const users = useAwait(getLastUser);
-  const statistics = useAwait(getStatistics);
+  const statistics = useAwait(getStatistics)!;
 
   return (
     <section className="bg-blue-50 py-16">
@@ -23,7 +23,17 @@ export function StatisticsSection() {
 
         <div className="mb-8 flex flex-col items-center justify-center md:flex-row">
           <div className="mr-4 text-6xl font-bold text-orange-600">
-            {statistics && users ? (users / statistics) * 100 : null}%
+            {statistics &&
+              ~~(
+                (statistics.reduce((sum, stat) => {
+                  return sum + stat.users;
+                }, 0) /
+                  statistics.reduce((sum, stat) => {
+                    return sum + stat.allUsers;
+                  }, 0)) *
+                100
+              )}
+            %
           </div>
           <div className="text-xl text-primary">
             работников нашей организации
@@ -37,37 +47,66 @@ export function StatisticsSection() {
         <div className="mb-4 text-center text-xl text-primary">
           А это{" "}
           <span className="font-semibold text-orange-600">
-            {users ? users : null} человек
+            {statistics &&
+              statistics.reduce((sum, stat) => {
+                return sum + stat.users;
+              }, 0)}{" "}
+            человек
           </span>
           , которым наш профсоюз предоставляет
         </div>
 
-        <div className="mb-12 grid grid-cols-1 gap-6 rounded-lg bg-white p-6 shadow-md sm:grid-cols-3">
-          <div className="flex flex-col items-center justify-center rounded-lg bg-blue-50 p-4 transition-all hover:shadow-md">
-            <div className="text-lg font-medium text-primary">
-              Всего в профсоюзе
-            </div>
-            <div className="mt-2 text-3xl font-bold text-primary">
-              {statistics ? statistics : 0}
-            </div>
-          </div>
+        <div className="mb-12 grid grid-cols-1 gap-6 rounded-lg bg-white p-6 shadow-md sm:grid-cols-4">
+          {statistics
+            ? statistics.map((stat) => (
+                <>
+                  <div className="flex flex-col items-center justify-center rounded-lg bg-blue-50 p-4 transition-all hover:shadow-md">
+                    <div
+                      style={{
+                        fontSize: `${stat.title.length > 10 ? 20 : 40}px`,
+                      }}
+                      className="mt-2 text-xl font-bold text-primary"
+                    >
+                      {stat.title}
+                    </div>
+                  </div>
+                  <div className="flex flex-col items-center justify-center rounded-lg bg-blue-50 p-4 transition-all hover:shadow-md">
+                    <div className="text-lg font-medium text-primary">
+                      Всего в штате
+                    </div>
+                    <div className="mt-2 text-3xl font-bold text-primary">
+                      {stat.allUsers}
+                    </div>
+                  </div>
 
-          <div className="flex flex-col items-center justify-center rounded-lg bg-blue-50 p-4 transition-all hover:shadow-md">
-            <div className="text-lg font-medium text-primary">С нами</div>
-            <div className="mt-2 text-3xl font-bold text-orange-600">
-              {users ? users : 0}
-            </div>
-          </div>
+                  <div className="flex flex-col items-center justify-center rounded-lg bg-blue-50 p-4 transition-all hover:shadow-md">
+                    <div className="text-lg font-medium text-primary">
+                      С нами
+                    </div>
+                    <div className="mt-2 text-3xl font-bold text-orange-600">
+                      {stat.users}
+                    </div>
+                  </div>
 
-          <div className="flex flex-col items-center justify-center rounded-lg bg-blue-50 p-4 transition-all hover:shadow-md">
-            <div className="text-lg font-medium text-primary">Охват</div>
-            <div className="mt-2 text-3xl font-bold text-green-600">
-              {statistics && users
-                ? ((users / statistics) * 100).toFixed(1)
-                : 0}
-              %
-            </div>
-          </div>
+                  <div className="relative flex flex-col items-center justify-center overflow-hidden rounded-lg bg-blue-50 p-4 transition-all hover:shadow-md">
+                    <div
+                      className="absolute bottom-0 left-0 right-0 h-full bg-green-600 bg-opacity-50 transition-transform duration-300"
+                      style={{
+                        transform: `translateY(${100 - Math.floor((stat.users / stat.allUsers) * 100)}%)`,
+                      }}
+                    />
+                    <div className="relative z-10">
+                      <div className="text-lg font-medium text-primary">
+                        Охват
+                      </div>
+                      <div className="mt-2 text-3xl font-bold text-green-800">
+                        {Math.floor((stat.users / stat.allUsers) * 100)}%
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ))
+            : null}
         </div>
 
         <div className="flex flex-col gap-8 lg:flex-row">

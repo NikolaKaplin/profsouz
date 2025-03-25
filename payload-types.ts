@@ -252,6 +252,7 @@ export interface Statistic {
   id: number;
   title: string;
   allUsers: number;
+  users: number;
   updatedAt: string;
   createdAt: string;
 }
@@ -427,6 +428,7 @@ export interface AvatarsSelect<T extends boolean = true> {
 export interface StatisticsSelect<T extends boolean = true> {
   title?: T;
   allUsers?: T;
+  users?: T;
   updatedAt?: T;
   createdAt?: T;
 }

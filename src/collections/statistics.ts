@@ -10,13 +10,19 @@ export const Statistics: CollectionConfig = {
     {
       name: "title",
       type: "text",
-      label: "Страница",
+      label: "Подразделение",
       required: true,
     },
     {
       name: "allUsers",
       type: "number",
-      label: "Все члены профсоюза",
+      label: "Количество человек по штату",
+      required: true,
+    },
+    {
+      name: "users",
+      type: "number",
+      label: "Количество человек",
       required: true,
     },
   ],
