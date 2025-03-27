@@ -19,3 +19,13 @@
 ./start-database.sh
 
 ## Окончен 21.03.2025
+
+Источник: cybercity
+
+Отредактируйте файл конфигурации nginx:
+
+nano /etc/nginx/nginx.conf
+Добавьте строку в раздел http, serverили location:
+
+client_max_body_size 100M;
+разрешение загрузки файлов для nginx

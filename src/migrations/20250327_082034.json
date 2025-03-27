@@ -1,5 +1,5 @@
 {
-  "id": "c2f8d4e4-748e-4971-9fa0-f3859ab99c6f",
+  "id": "ed682a1b-ca55-497e-bbbc-eeb469b6e447",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -801,9 +801,15 @@
           "primaryKey": false,
           "notNull": true
         },
-        "content": {
-          "name": "content",
-          "type": "varchar",
+        "all_users": {
+          "name": "all_users",
+          "type": "numeric",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "users": {
+          "name": "users",
+          "type": "numeric",
           "primaryKey": false,
           "notNull": true
         },
