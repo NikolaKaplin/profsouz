@@ -41,7 +41,11 @@ export default buildConfig({
     },
   },
   collections: [Users, News, Events, Tickets, Avatars, Statistics],
-
+  upload: {
+    limits: {
+      fileSize: 5000000,
+    },
+  },
   plugins: [
     s3Storage({
       collections: {
