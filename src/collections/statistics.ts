@@ -6,6 +6,9 @@ export const Statistics: CollectionConfig = {
     singular: "статистика",
     plural: "статистика",
   },
+  admin: {
+    useAsTitle: "title",
+  },
   fields: [
     {
       name: "title",

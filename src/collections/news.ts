@@ -19,6 +19,13 @@ export const News: CollectionConfig = {
       label: "Содержание",
       required: true,
     },
+    {
+      name: "stat",
+      type: "relationship",
+      label: "Корпус",
+      relationTo: "statistics",
+      required: false,
+    },
   ],
   timestamps: true,
   access: {

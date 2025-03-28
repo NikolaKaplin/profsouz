@@ -16,6 +16,7 @@ interface Props {
 }
 
 export const NewCard = ({ props }: Props) => {
+  console.log(props);
   return (
     <Card className="group relative overflow-hidden border border-gray-200 bg-white transition-all duration-300 hover:shadow-lg">
       <div className="relative h-64 overflow-hidden">

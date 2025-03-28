@@ -1,5 +1,5 @@
 {
-  "id": "ed682a1b-ca55-497e-bbbc-eeb469b6e447",
+  "id": "94b342dd-70be-4399-a727-3af5543c5dcb",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -200,6 +200,12 @@
           "primaryKey": false,
           "notNull": true
         },
+        "stat_id": {
+          "name": "stat_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
         "updated_at": {
           "name": "updated_at",
           "type": "timestamp(3) with time zone",
@@ -270,6 +276,21 @@
         }
       },
       "indexes": {
+        "news_stat_idx": {
+          "name": "news_stat_idx",
+          "columns": [
+            {
+              "expression": "stat_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
         "news_updated_at_idx": {
           "name": "news_updated_at_idx",
           "columns": [
@@ -316,7 +337,21 @@
           "with": {}
         }
       },
-      "foreignKeys": {},
+      "foreignKeys": {
+        "news_stat_id_statistics_id_fk": {
+          "name": "news_stat_id_statistics_id_fk",
+          "tableFrom": "news",
+          "tableTo": "statistics",
+          "columnsFrom": [
+            "stat_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        }
+      },
       "compositePrimaryKeys": {},
       "uniqueConstraints": {}
     },

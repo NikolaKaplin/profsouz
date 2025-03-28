@@ -180,6 +180,7 @@ export interface News {
     };
     [k: string]: unknown;
   };
+  stat?: (number | null) | Statistic;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -191,6 +192,18 @@ export interface News {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "statistics".
+ */
+export interface Statistic {
+  id: number;
+  title: string;
+  allUsers: number;
+  users: number;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -241,18 +254,6 @@ export interface Ticket {
   event: number | Event;
   endDate: string;
   amount: number;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "statistics".
- */
-export interface Statistic {
-  id: number;
-  title: string;
-  allUsers: number;
-  users: number;
   updatedAt: string;
   createdAt: string;
 }
@@ -355,6 +356,7 @@ export interface UsersSelect<T extends boolean = true> {
 export interface NewsSelect<T extends boolean = true> {
   title?: T;
   content?: T;
+  stat?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
