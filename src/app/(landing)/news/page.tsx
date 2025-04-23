@@ -3,9 +3,9 @@
 import { useState, useMemo } from "react";
 import { NewCard } from "~/components/shared/new-card";
 import { useAwait } from "~/hooks/use-await";
-import { getLastNews, getStatistics } from "../actions";
+import { getLastNews } from "../actions";
 import { Button } from "~/components/ui/button";
-import { News, Statistic } from "payload-types";
+import { News } from "payload-types";
 export default function Home() {
   const [tab, setTab] = useState<string>("all");
   const news = useAwait(getLastNews) ?? [];

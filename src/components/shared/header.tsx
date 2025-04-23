@@ -61,7 +61,7 @@ export default function Navbar({ items }: { items: HeadItem[] }) {
 
         {/* Desktop menu */}
         <div className="hidden items-center justify-center gap-6 text-center md:flex">
-          {user?.role == "admin" ? (
+          {user?.role === "admin" || user?.role === "editor" ? (
             <Link
               key={null}
               href={"/admin"}
@@ -136,7 +136,7 @@ export default function Navbar({ items }: { items: HeadItem[] }) {
               )}
             </SheetHeader>
             <div className="mt-6 flex flex-col gap-4">
-              {user?.role == "admin" ? (
+              {user?.role === "editor" || user?.role === "admin" ? (
                 <Link
                   key={null}
                   href={"/admin"}

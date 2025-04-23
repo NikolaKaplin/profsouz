@@ -29,9 +29,8 @@ export const News: CollectionConfig = {
   ],
   timestamps: true,
   access: {
-    admin({ req }) {
-      return req.user?.username == "postEditor" || req.user?.role == "admin";
-    },
+    admin: ({ req }) =>
+      req.user?.role === "admin" || req.user?.role === "editor",
     read: () => true,
   },
   upload: true,

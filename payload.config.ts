@@ -40,6 +40,7 @@ export default buildConfig({
       },
     },
   },
+
   collections: [Users, News, Events, Tickets, Avatars, Statistics],
   upload: {
     limits: {

@@ -125,7 +125,7 @@ export interface UserAuthOperations {
 export interface User {
   id: number;
   fullName: string;
-  role: 'admin' | 'user';
+  role: 'admin' | 'user' | 'editor';
   avatar?: (number | null) | Avatar;
   updatedAt: string;
   createdAt: string;

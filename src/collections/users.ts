@@ -26,6 +26,7 @@ export const Users: CollectionConfig = {
       options: [
         { label: "Администратор", value: "admin" },
         { label: "Пользователь", value: "user" },
+        { label: "Редактор", value: "editor" },
       ],
       required: true,
       defaultValue: "user",
@@ -39,10 +40,13 @@ export const Users: CollectionConfig = {
     },
   ],
   access: {
-    read: () => true,
+    create: ({ req }) => req.user?.role === "admin",
+    update: ({ req }) => req.user?.role === "admin",
+    delete: ({ req }) => req.user?.role === "admin",
+    read: ({ req }) => req.user?.role === "admin",
     admin: ({ req }) => {
       if (!req.user) return false;
-      return req.user.role === "admin";
+      return req.user.role === "admin" || req.user.role === "editor";
     },
   },
   upload: false,
