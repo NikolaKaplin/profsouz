@@ -12,6 +12,7 @@ export default function Home() {
 
   const filteredNews = useMemo(() => {
     if (tab === "all") return news;
+    //@ts-ignore
     return news.filter((item: News) => item.stat?.title === tab);
   }, [news, tab]);
 
